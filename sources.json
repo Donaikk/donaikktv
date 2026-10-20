@@ -1,0 +1,10 @@
+{
+  "_aviso": "Fontes de canais e eventos. A licença do conteúdo precisa ser verificada antes de publicar o site.",
+  "api": "https://api.reidoscanais.si",
+  "proxy": "https://api.allorigins.win/raw?url=",
+  "endpoints": {
+    "channels": "/channels",
+    "sports": "/sports",
+    "search": "/search?q="
+  }
+}

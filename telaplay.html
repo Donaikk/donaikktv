@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Donaikk TV – Canais e esportes ao vivo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- LOGIN / CADASTRO -->
+<div class="auth" id="auth" hidden>
+  <div class="auth-wrap">
+    <div class="mascot" id="mascot" data-s="idle">
+      <svg class="mascot-svg" viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="glb" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a77bff"/>
+            <stop offset="1" stop-color="#4a2880"/>
+          </linearGradient>
+          <clipPath id="cel"><ellipse cx="76" cy="100" rx="16" ry="18"/></clipPath>
+          <clipPath id="cer"><ellipse cx="124" cy="100" rx="16" ry="18"/></clipPath>
+        </defs>
+        <path class="horn" d="M52 62 L34 14 L82 44 Z"/>
+        <path class="horn" d="M148 62 L166 14 L118 44 Z"/>
+        <path class="body" d="M100 28 C146 28 168 60 168 104 L168 150 Q160 172 146 156 Q136 140 124 160 Q112 178 100 160 Q88 178 76 160 Q64 140 54 156 Q40 172 32 150 L32 104 C32 60 54 28 100 28 Z"/>
+        <ellipse class="blush" cx="60" cy="126" rx="10" ry="6"/>
+        <ellipse class="blush" cx="140" cy="126" rx="10" ry="6"/>
+        <g class="eye">
+          <ellipse cx="76" cy="100" rx="16" ry="18"/>
+          <circle class="pupil" cx="76" cy="102" r="7"/>
+          <g clip-path="url(#cel)"><rect class="lid" x="56" y="82" width="40" height="40"/></g>
+        </g>
+        <g class="eye">
+          <ellipse cx="124" cy="100" rx="16" ry="18"/>
+          <circle class="pupil" cx="124" cy="102" r="7"/>
+          <g clip-path="url(#cer)"><rect class="lid" x="104" y="82" width="40" height="40"/></g>
+        </g>
+        <path class="mouth m-smile" d="M86 128 Q100 142 114 128"/>
+        <path class="mouth m-sad" d="M86 140 Q100 126 114 140"/>
+        <path class="mouth m-happy" d="M82 126 Q100 160 118 126 Z"/>
+        <path class="sweat" d="M158 66 Q164 78 158 84 Q152 78 158 66 Z"/>
+        <g class="hand hand-l"><ellipse cx="76" cy="100" rx="21" ry="17"/></g>
+        <g class="hand hand-r"><ellipse cx="124" cy="100" rx="21" ry="17"/></g>
+      </svg>
+    </div>
+
+    <form class="auth-box" id="af" autocomplete="on">
+      <div class="logo">DONAIKK TV</div>
+      <div class="tabs">
+        <button type="button" data-m="in" class="on">Entrar</button>
+        <button type="button" data-m="up">Criar conta</button>
+      </div>
+      <label>Usuário
+        <input id="au" autocomplete="username" minlength="3" maxlength="24" required placeholder="seu_usuario">
+      </label>
+      <label id="lname" hidden>Nome de exibição
+        <input id="an" maxlength="30" placeholder="Como quer ser chamado">
+      </label>
+      <label>Senha
+        <span class="pw">
+          <input id="ap" type="password" autocomplete="current-password" minlength="6" maxlength="100" required placeholder="mínimo 6 caracteres">
+          <button type="button" class="pwbtn" id="pwb" aria-label="Mostrar senha">👁</button>
+        </span>
+      </label>
+      <p class="aerr" id="aerr" role="alert"></p>
+      <button class="btn-main" id="asub" type="submit">Entrar</button>
+      <p class="auth-note">Contas ficam no db.json do site e neste navegador.</p>
+    </form>
+  </div>
+</div>
+
+<!-- CABEÇALHO -->
+<header id="hd">
+  <button class="logo" data-nav="home" aria-label="Início">DONAIKK TV</button>
+  <nav aria-label="Principal">
+    <button class="navlink" data-nav="live">Ao vivo</button>
+    <button class="navlink" data-nav="next">Próximos</button>
+    <button class="navlink" data-nav="channels">Canais</button>
+    <button class="navlink" data-nav="favs">Minha lista</button>
+  </nav>
+  <div class="sp"></div>
+  <div class="search" id="sb">
+    <button id="sbtn" class="iconbtn" aria-label="Buscar">🔍</button>
+    <input id="q" type="search" placeholder="Títulos, times, canais" aria-label="Buscar">
+    <button id="sclose" class="iconbtn" aria-label="Fechar busca">✕</button>
+  </div>
+  <div class="me" id="me" hidden>
+    <button class="avatar" id="av" aria-label="Abrir menu da conta" aria-haspopup="true"></button>
+    <button class="burger" id="burger" aria-label="Conta e menu">☰</button>
+    <div class="menu" id="menu" hidden>
+      <div class="menu-user">
+        <span class="mavatar" id="av2"></span>
+        <div><b id="mname"></b><small>Conta neste navegador</small></div>
+      </div>
+      <button data-act="export">⬇ Baixar db.json</button>
+      <div class="sep"></div>
+      <button data-act="logout" class="danger">Sair</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero"></section>
+
+<main class="home" id="main">
+  <div class="chips" id="chips"></div>
+  <div id="rows"></div>
+</main>
+
+<!-- BARRA INFERIOR (celular) -->
+<nav class="bottomnav" id="bottomnav" hidden aria-label="Navegação">
+  <button data-nav="home"><span class="ic">🏠</span>Início</button>
+  <button data-nav="live"><span class="ic">🔴</span>Ao vivo</button>
+  <button data-nav="next"><span class="ic">🕒</span>Próximos</button>
+  <button data-nav="channels"><span class="ic">📺</span>Canais</button>
+  <button data-nav="favs"><span class="ic">⭐</span>Lista</button>
+</nav>
+
+<footer>
+  <span id="upd"></span>
+  <button id="refresh">↻ Atualizar agora</button>
+</footer>
+
+<!-- PLAYER -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Player">
+  <div class="box">
+    <button class="close" id="close" aria-label="Fechar">✕</button>
+    <div class="player" id="player"></div>
+    <div class="det" id="det"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
